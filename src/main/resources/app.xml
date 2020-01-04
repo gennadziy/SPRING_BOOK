@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd"
+       default-init-method="turnOnLights"
+       default-destroy-method="turnOffLights">
+    <!-- Здесь должны находиться объявления компонентов -->
+
+<bean id="juggler" class="gennadziy.Juggler" >
+
+    <constructor-arg value="789"></constructor-arg>
+</bean>
+
+    <bean id="sonnet29" class="gennadziy.Sonnet29"/>
+    <bean id="sonnet28" class="gennadziy.Sonnet28"/>
+
+    <bean id="poeticJuggler" class="gennadziy.PoeticJuggler" >
+        <constructor-arg value="15" />
+        <constructor-arg ref="sonnet29" />
+    </bean>
+
+    <bean id="stage" class="gennadziy.Stage"
+          factory-method="getInstance"/>
+
+    <bean id="ticket" class="gennadziy.Ticket" scope="prototype"/>
+
+    <bean id="auditorium" class="gennadziy.Auditorium"
+          init-method="turnOnLights"
+          destroy-method="turnOffLights"/>
+
+    <bean id="instrumentalist" class="gennadziy.Instrumentalist">
+        <property name="song" value="JINGLE BENS"/>
+        <property name="age"  value="8678"/>
+    </bean>
+
+</beans>
